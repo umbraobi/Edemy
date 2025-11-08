@@ -6,7 +6,7 @@ import { assets } from "../../assets/assets";
 import humanizeDuration from "humanize-duration";
 import Footer from "../../components/student/Footer";
 import YouTube from "react-youtube"
-
+import { toast } from "react-toastify";
 const CourseDetails = () => {
     const { id } = useParams();
     const [courseData, setCourseData] = useState(null);
@@ -34,6 +34,11 @@ const CourseDetails = () => {
             ...prev,
             [index]: !prev[index],
         }));
+    };
+
+    const handleEnroll = () => {
+        toast.info("Will work when connected to backend!!"); // show toast
+        // navigate("/educator"); // don't navigate yet
     };
 
     return courseData ? (
@@ -212,7 +217,7 @@ const CourseDetails = () => {
                                 <p>{calculateNoOfLectures(courseData)} lessons</p>
                             </div>
                         </div>
-                        <button className="md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white font-medium">{isAlreadyEnrolled ? "Already Enrolled" : "Enroll Now"}</button>
+                        <button onClick={handleEnroll} className="md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white font-medium">{isAlreadyEnrolled ? "Already Enrolled" : "Enroll Now"}</button>
 
                         <div className="pt-6">
                             <p className="md:text-xl text-lg font-medium text-gray-800">
